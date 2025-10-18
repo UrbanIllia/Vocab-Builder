@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Подключение MacPaw Fixel Display */
+@font-face {
+  font-family: "MacPaw Fixel Display";
+  src: url("/public/fonts/fonts/MacPawFixelDisplay-Regular.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MacPaw Fixel Display";
+  src: url("/public/fonts/fonts/MacPawFixelDisplay-Medium.otf")
+    format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MacPaw Fixel Display";
+  src: url("/public/fonts/fonts/MacPawFixelDisplay-SemiBold.otf")
+    format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MacPaw Fixel Display";
+  src: url("/public/fonts/fonts/MacPawFixelDisplay-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Подключение SF Pro Display */
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/public/fonts/fonts/SF-Pro-Display-Light.otf") format("opentype");
+  font-weight: 300; /* Light */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/public/fonts/fonts/SF-Pro-Display-Regular.otf") format("opentype");
+  font-weight: 400; /* Regular */
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: "MacPaw Fixel Display", sans-serif;
+  /* font-weight: 400;  */
+}
+
+/* h1 {
+  font-family: "SF Pro Display", sans-serif;
+  font-weight: 300;
+}
+
+.bold-text {
+  font-family: "MacPaw Fixel Display", sans-serif;
+  font-weight: 700; 
+}
+
+.medium-text {
+  font-family: "MacPaw Fixel Display", sans-serif;
+  font-weight: 500; 
+} */
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: #f8f8f8;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+:root {
+  --toastify-color-success: #000000;
+  --toastify-color-error: #ef4444;
+  --toastify-color-warning: #f59e0b;
+  --toastify-color-info: #3b82f6;
+  --toastify-toast-background: #fff;
+  --toastify-color-dark: #121212;
+}
