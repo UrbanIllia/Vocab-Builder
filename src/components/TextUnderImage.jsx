@@ -5,8 +5,9 @@ const TextUnderImage = () => {
     <div>
       <p
         className={clsx(
-          "text-center text-sm font-normal text-lightSecondGray/80",
+          "mb-4 text-center text-sm font-normal text-lightSecondGray/80",
           "md:text-base md:leading-oneAndHalf",
+          "xl:mb-0",
         )}
       >
         Word · Translation · Grammar · Progress

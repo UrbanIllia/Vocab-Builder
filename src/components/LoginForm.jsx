@@ -1,12 +1,11 @@
 import clsx from "clsx";
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import { validationSchemaRegister } from "../validations/schemas";
-import PasswordEye from "./PasswordEye";
 import { useState } from "react";
+import { validationSchemaLogin } from "../validations/schemas";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import PasswordEye from "./PasswordEye";
 import { useNavigate } from "react-router-dom";
 
 const initialValues = {
-  name: "",
   email: "",
   password: "",
 };
@@ -14,7 +13,7 @@ const initialValues = {
 const inputStyle =
   "w-full rounded-[15px] border outline-none hover:border transition hover:border-primaryGreen border-lightSecondGray/10 px-[18px] py-4 text-base font-normal leading-oneAndHalf text-primaryBlack placeholder:text-base placeholder:font-normal placeholder:text-primaryBlack";
 
-const RegisterForm = ({ handleSubmit }) => {
+const LoginForm = ({ handleSubmitLogin }) => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
@@ -22,41 +21,20 @@ const RegisterForm = ({ handleSubmit }) => {
     setShowPassword((prev) => !prev);
   };
 
-  const handleSubmitForm = (values, { resetForm }) => {
-    handleSubmit(values);
+  const handleSubmit = (values, { resetForm }) => {
+    console.log("LoginForm", values);
+    handleSubmitLogin(values);
     resetForm();
   };
-
   return (
     <div className="w-full">
       <Formik
         initialValues={initialValues}
-        onSubmit={handleSubmitForm}
-        validationSchema={validationSchemaRegister}
+        onSubmit={handleSubmit}
+        validationSchema={validationSchemaLogin}
       >
         {({ errors, touched }) => (
           <Form className="flex flex-col">
-            {/* //////////////////////////////////////////////////////////////////////////////////////// */}
-
-            <label className="relative">
-              <Field
-                name="name"
-                type="text"
-                placeholder="Name"
-                autoComplete="name"
-                className={clsx(
-                  inputStyle,
-                  "mb-[14px]",
-                  errors.name && touched.name && "border border-red-700",
-                )}
-              ></Field>
-              <ErrorMessage
-                component="div"
-                name="name"
-                className="absolute bottom-1 left-0 z-50 bg-slate-100 text-red-700"
-              />
-            </label>
-
             {/* //////////////////////////////////////////////////////////////////////////////////////// */}
 
             <label className="relative">
@@ -106,23 +84,22 @@ const RegisterForm = ({ handleSubmit }) => {
 
             <button
               type="submit"
-              // onClick={handleSubmitForm}
               className={clsx(
                 "flex w-full items-center justify-center rounded-[30px] hover:bg-secondaryGreen",
                 "mb-4 bg-primaryGreen py-4 text-base font-semibold leading-oneAndHalf text-primaryWhite transition",
                 "md:text-[18px] md:leading-[1.55556]",
               )}
             >
-              Register
+              Login
             </button>
             <button
               type="button"
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/register")}
               className={clsx(
                 "text-base font-semibold leading-oneAndHalf text-lightSecondGray/50 underline transition hover:text-lightSecondGray",
               )}
             >
-              Login
+              Register
             </button>
           </Form>
         )}
@@ -131,4 +108,4 @@ const RegisterForm = ({ handleSubmit }) => {
   );
 };
 
-export default RegisterForm;
+export default LoginForm;
