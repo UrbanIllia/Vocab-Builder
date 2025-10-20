@@ -8,10 +8,6 @@ import IconBurger from "./IconBurger";
 const UserBar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // const handleOpenModal = () => {
-  //   setIsOpen((prev) => !prev);
-  // };
-
   return (
     <div
       className={clsx(

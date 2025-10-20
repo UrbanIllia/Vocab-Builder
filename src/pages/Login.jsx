@@ -4,13 +4,16 @@ import ImgageRegisterAndLogin from "../components/ImgageRegisterAndLogin";
 import TextUnderImage from "../components/TextUnderImage";
 import { useDispatch } from "react-redux";
 import { loginUserThunk } from "../redux/auth/operationsAuth";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const dispatch = useDispatch();
 
   const handleSubmitLogin = (values) => {
     console.log("login", values);
-    dispatch(loginUserThunk(values)).unwrap();
+    dispatch(loginUserThunk(values))
+      .unwrap()
+      .then(toast.success("Login is success"));
   };
 
   return (

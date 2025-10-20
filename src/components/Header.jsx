@@ -1,12 +1,13 @@
 import clsx from "clsx";
-import { useState } from "react";
+
 import UserBar from "./UserBar";
 import Logo from "./Logo";
 import UserNav from "./UserNav";
+import { useSelector } from "react-redux";
+import { selectLoggedIn } from "../redux/auth/selectorsAuth";
 
 const Header = () => {
-  const [isLogged, setIsLogged] = useState(true);
-
+  const isLoggedIn = useSelector(selectLoggedIn);
   const handleOpenModal = () => {};
   return (
     <header
@@ -17,7 +18,7 @@ const Header = () => {
       )}
     >
       <Logo />
-      {isLogged && (
+      {isLoggedIn && (
         <div className="flex flex-row items-center justify-between gap-[257px]">
           <div className="hidden xl:flex">
             <UserNav variant="header" />

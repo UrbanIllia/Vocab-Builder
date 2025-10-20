@@ -128,7 +128,7 @@ img {
   overflow: hidden;
 }
 :root {
-  --toastify-color-success: #000000;
+  --toastify-color-success: #85aa9f;
   --toastify-color-error: #ef4444;
   --toastify-color-warning: #f59e0b;
   --toastify-color-info: #3b82f6;

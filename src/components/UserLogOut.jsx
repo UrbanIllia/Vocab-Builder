@@ -1,35 +1,44 @@
 import clsx from "clsx";
+import { useDispatch } from "react-redux";
+import { logoutUserThunk } from "../redux/auth/operationsAuth";
+import { toast } from "react-toastify";
 
 const UserLogOut = ({ variant }) => {
   const isHeader = variant === "header";
+  const dispatch = useDispatch();
 
   return (
     <div
       className={clsx(
         isHeader && "hidden hover:scale-110",
         !isHeader && "mt-7 hover:translate-x-6",
-        "flex flex-row items-center justify-start gap-[6px] transition duration-300",
+        "flex flex-row items-center justify-start transition duration-300",
         "xl:flex",
       )}
     >
       <button
         className={clsx(
           !isHeader && "text-sm text-primaryWhite",
-          "leading-oneAndAlmostHalf flex items-center justify-center text-base font-medium text-primaryBlack",
+          "flex flex-row items-center justify-center gap-[6px] text-base font-medium leading-oneAndAlmostHalf text-primaryBlack",
         )}
+        onClick={() =>
+          dispatch(logoutUserThunk())
+            .unwrap()
+            .then(toast.success("Logout is success"))
+        }
       >
-        Log out
+        <span>Log out </span>
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          className={clsx(
+            "h-4 w-4 fill-none",
+            isHeader ? "stroke-primaryBlack" : "stroke-primaryWhite",
+          )}
+        >
+          <use href="/public/icons/sprite.svg#icon-arrow-right"></use>
+        </svg>
       </button>
-      <svg
-        aria-hidden="true"
-        focusable="false"
-        className={clsx(
-          "h-4 w-4 fill-none",
-          isHeader ? "stroke-primaryBlack" : "stroke-primaryWhite",
-        )}
-      >
-        <use href="/public/icons/sprite.svg#icon-arrow-right"></use>
-      </svg>
     </div>
   );
 };
