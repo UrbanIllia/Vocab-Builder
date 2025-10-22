@@ -7,7 +7,7 @@ import Dictionary from "./pages/Dictionary";
 import Recommend from "./pages/Recommend";
 import Training from "./pages/Training";
 import { useDispatch, useSelector } from "react-redux";
-import { selectLoggedIn, selectToken } from "./redux/auth/selectorsAuth";
+import { selectToken } from "./redux/auth/selectorsAuth";
 import { useEffect } from "react";
 import { getCurrentUserThunk } from "./redux/auth/operationsAuth";
 import { ToastContainer } from "react-toastify";
@@ -15,13 +15,11 @@ import { ToastContainer } from "react-toastify";
 function App() {
   const token = useSelector(selectToken);
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(selectLoggedIn);
 
   useEffect(() => {
     if (!token) return;
     dispatch(getCurrentUserThunk(token));
   }, [token, dispatch]);
-  console.log(isLoggedIn);
   return (
     <>
       <Routes>

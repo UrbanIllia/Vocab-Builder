@@ -1,15 +1,6 @@
 import clsx from "clsx";
 import { NavLink } from "react-router-dom";
 
-// const notActiveLink =
-//   "rounded-[15px] px-3 py-5 border border-transparent hover:border hover:border-primaryGreen transition duration-300";
-// const activeLink = "bg-primaryGreen";
-
-// const notActiveLinkModal =
-//   "rounded-[15px] transition hover:translate-x-6 transition duration-300";
-// const activeLinkModal =
-//   "bg-primaryWhite px-5 py-3 text-primaryBlack flex justify-center hover:none";
-
 const activeNav = ({ isActive }) =>
   clsx(
     "rounded-[15px] px-3 py-5 border border-transparent transition duration-300",
