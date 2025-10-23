@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { Field, Form, Formik } from "formik";
 import debounce from "lodash.debounce";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import DashboardSelect from "./DashboardSelect";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategoriesThunk } from "../redux/category/operationsCat";
@@ -10,6 +10,7 @@ import { addDictionaryFilters } from "../redux/dictionaryFilters/sliceDicFilters
 import Statistics from "./Statistics";
 import AddWordBtn from "./AddWordBtn";
 import TrainWordBtn from "./TrainWordBtn";
+import AddWordModal from "./AddWordModal";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,13 @@ const Dashboard = () => {
 
   const { dictionaryFilters } = useSelector((state) => state.dictionaryFilters);
   console.log("dictionaryFilters", dictionaryFilters);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   useEffect(() => {
     dispatch(getCategoriesThunk());
   }, [dispatch]);
@@ -37,7 +45,7 @@ const Dashboard = () => {
             <Form
               className={clsx(
                 "relative flex w-full flex-col gap-2",
-                // 🩵 на десктопе всё в ряд и выровнено
+
                 "md:h-[48px] md:flex-row md:items-center md:gap-[8px]",
               )}
             >
@@ -67,6 +75,7 @@ const Dashboard = () => {
                 <DashboardSelect
                   name="category"
                   value={values.category}
+                  variant="dictionary"
                   onChange={(value) => {
                     setFieldValue("category", value);
                     handleLiveChange({ ...values, category: value });
@@ -77,12 +86,19 @@ const Dashboard = () => {
               </div>
 
               {values.category === "verb" && (
-                <TwoChecks
-                  onChange={(val) => {
-                    setFieldValue("isIrregular", val);
-                    handleLiveChange({ ...values, isIrregular: val });
-                  }}
-                />
+                <div
+                  className={clsx(
+                    "absolute left-0 top-[116px] flex items-center justify-center gap-4",
+                    "md:left-[452px] md:top-[14px]",
+                  )}
+                >
+                  <TwoChecks
+                    onChange={(val) => {
+                      setFieldValue("isIrregular", val);
+                      handleLiveChange({ ...values, isIrregular: val });
+                    }}
+                  />
+                </div>
               )}
             </Form>
           )}
@@ -92,10 +108,11 @@ const Dashboard = () => {
       <div className="flex flex-col gap-4 md:mt-4 md:flex-row md:items-center xl:mt-0">
         <Statistics />
         <div className="flex flex-row items-center gap-4">
-          <AddWordBtn />
+          <AddWordBtn handleOpenModal={handleOpenModal} />
           <TrainWordBtn />
         </div>
       </div>
+      {isOpen && <AddWordModal handleOpenModal={handleOpenModal} />}
     </div>
   );
 };

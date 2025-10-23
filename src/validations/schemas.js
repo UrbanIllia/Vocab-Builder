@@ -24,3 +24,19 @@ export const validationSchemaLogin = Yup.object({
     )
     .required("⛔ Password is required"),
 });
+
+export const validationSchemaAddWord = Yup.object({
+  en: Yup.string()
+    .required("⛔ English word is required")
+    .min(2, "⛔ Must be at least 2 characters")
+    .matches(/^[a-zA-Z\s-]+$/, "⛔ Must contain only Latin letters"),
+  ua: Yup.string()
+    .required("⛔ Ukrainian word is required")
+    .min(2, "⛔ Must be at least 2 characters")
+    .matches(/^[а-яА-Яїіґє\s-]+$/, "⛔ Only Cyrillic letters"),
+  category: Yup.string().required("⛔ Category is required"),
+  // .oneOf(["verb", "noun", "adjective"], "Invalid category"),
+  isIrregular: Yup.string()
+    .oneOf(["true", "false", ""], "⛔ Invalid option")
+    .optional(),
+});

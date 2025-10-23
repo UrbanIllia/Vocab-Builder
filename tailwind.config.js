@@ -20,6 +20,7 @@ export default {
         secondaryWhite: "#f8f8f8",
         lightGray: "#85AABB",
         lightSecondGray: "#121417",
+        lightWhite: "#d1d5db",
       },
       width: {
         "card-sm": "max-w-[236px]",
@@ -32,6 +33,7 @@ export default {
         oneAndThird: "1.33333",
         onePointZeroSix: "1.06667",
         onePointTwo: "1.2",
+        onePointSix: "1.16667",
       },
     },
   },
