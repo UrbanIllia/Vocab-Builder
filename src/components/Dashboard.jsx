@@ -15,9 +15,8 @@ import AddWordModal from "./AddWordModal";
 const Dashboard = () => {
   const dispatch = useDispatch();
   const options = useSelector((state) => state.categories.categories);
-
   const { dictionaryFilters } = useSelector((state) => state.dictionaryFilters);
-  console.log("dictionaryFilters", dictionaryFilters);
+  // console.log("dictionaryFilters", dictionaryFilters);
 
   const [isOpen, setIsOpen] = useState(false);
 

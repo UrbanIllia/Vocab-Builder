@@ -6,9 +6,8 @@ import { selectCategories } from "../redux/category/selectorsCat";
 import { validationSchemaAddWord } from "../validations/schemas";
 import TwoChecks from "./TwoChecks";
 
-const AddWordForm = ({ initialValues, handleSubmitForm }) => {
+const AddWordForm = ({ initialValues, handleSubmitForm, onCancel }) => {
   const options = useSelector(selectCategories);
-  console.log(options);
 
   const handleSubmit = (values, { resetForm }) => {
     handleSubmitForm(values);
@@ -41,8 +40,20 @@ const AddWordForm = ({ initialValues, handleSubmitForm }) => {
               className="absolute bottom-1 left-0 z-50 bg-primaryGreen text-xs text-red-700"
             />
             {values.category === "verb" && (
-              <div className="absolute bottom-[-30px] left-0">
-                <TwoChecks variant="modal" />
+              <div className="absolute bottom-[-48px] left-0 flex flex-col items-start gap-2">
+                <TwoChecks
+                  variant="modal"
+                  onChange={(val) => {
+                    setFieldValue("isIrregular", val);
+                    // handleLiveChange({ ...values, isIrregular: val });
+                  }}
+                />
+                {values.isIrregular === true && (
+                  <p className="text-[10px] font-normal leading-onePointTwo text-primaryWhite">
+                    Such data must be entered in the format I form-II form-III
+                    form.
+                  </p>
+                )}
               </div>
             )}
           </label>
@@ -69,7 +80,7 @@ const AddWordForm = ({ initialValues, handleSubmitForm }) => {
               placeholder="Працювати"
               className={clsx(
                 "order-2 w-full placeholder:text-base placeholder:font-medium placeholder:leading-oneAndHalf placeholder:text-primaryWhite md:order-1 md:max-w-[354px]",
-                "rounded-[15px] border border-lightWhite bg-transparent px-6 py-3 text-base font-medium leading-oneAndHalf text-primaryWhite outline-none",
+                "rounded-[15px] border border-lightWhite bg-transparent px-6 py-3 text-base font-medium leading-oneAndHalf text-primaryWhite outline-none transition hover:border-primaryWhite",
                 errors.ua && touched.ua && "border border-red-700",
               )}
             />
@@ -100,7 +111,7 @@ const AddWordForm = ({ initialValues, handleSubmitForm }) => {
               placeholder="Work"
               className={clsx(
                 "order-2 w-full placeholder:text-base placeholder:font-medium placeholder:leading-oneAndHalf placeholder:text-primaryWhite md:order-1 md:max-w-[354px]",
-                "rounded-[15px] border border-lightWhite bg-transparent px-6 py-3 text-base font-medium leading-oneAndHalf text-primaryWhite outline-none",
+                "rounded-[15px] border border-lightWhite bg-transparent px-6 py-3 text-base font-medium leading-oneAndHalf text-primaryWhite outline-none transition hover:border-primaryWhite",
                 errors.en && touched.en && "border border-red-700",
               )}
             />
@@ -112,7 +123,6 @@ const AddWordForm = ({ initialValues, handleSubmitForm }) => {
           </label>
           <div className="flex flex-row gap-2 md:gap-[10px]">
             <button
-              onClick={handleSubmit}
               type="submit"
               className={clsx(
                 "h-[48px] w-full max-w-[159px] rounded-[30px] bg-primaryWhite text-base font-bold leading-oneAndHalf text-primaryBlack transition hover:scale-90 hover:text-primaryGreen",
@@ -123,6 +133,7 @@ const AddWordForm = ({ initialValues, handleSubmitForm }) => {
             </button>
             <button
               type="button"
+              onClick={onCancel}
               className={clsx(
                 "h-[48px] w-full max-w-[145px] rounded-[30px] border border-primaryWhite/40 bg-primaryGreen text-base font-bold leading-oneAndHalf text-primaryWhite transition hover:scale-90 hover:bg-primaryWhite hover:text-primaryBlack",
                 "md:h-[56px] md:max-w-[245px] md:text-lg",

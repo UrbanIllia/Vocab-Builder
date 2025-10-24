@@ -3,6 +3,8 @@ import clsx from "clsx";
 import AddWordForm from "./AddWordForm";
 import { useDispatch } from "react-redux";
 import { addUserWordThunk } from "../redux/wordsUser/operationsWordsUser";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 const initialValues = {
   en: "",
@@ -14,14 +16,37 @@ const initialValues = {
 const AddWordModal = ({ handleOpenModal }) => {
   const dispatch = useDispatch();
 
-  const handleSubmitForm = (values) => {
-    dispatch(addUserWordThunk(values)).then(() => {
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") handleOpenModal();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [handleOpenModal]);
+
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) handleOpenModal();
+  };
+
+  const handleSubmitForm = async (values) => {
+    console.log("handleSubmitForm", values);
+
+    try {
+      await dispatch(addUserWordThunk(values)).unwrap();
+
+      toast.success("✅ Word added successfully!");
       handleOpenModal();
-    });
+    } catch (error) {
+      console.error("Error adding word:", error);
+      toast.error(`❌ ${error || "Failed to add word"}`);
+    }
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+      onClick={handleBackdropClick}
+    >
       <div
         className={clsx(
           "relative mx-auto w-full max-w-[342px] rounded-[15px] bg-primaryGreen px-4 py-[48px]",
@@ -55,6 +80,7 @@ const AddWordModal = ({ handleOpenModal }) => {
         <AddWordForm
           initialValues={initialValues}
           handleSubmitForm={handleSubmitForm}
+          onCancel={handleOpenModal}
         />
       </div>
     </div>

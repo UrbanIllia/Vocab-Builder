@@ -14,6 +14,7 @@ import {
 import storage from "redux-persist/lib/storage";
 import { categoriesReducer } from "./category/sliceCat";
 import { dictionaryFiltersReducer } from "./dictionaryFilters/sliceDicFilters";
+import { reducerOwnWord } from "./wordsUser/sliceWordsUser";
 
 const persistConfig = {
   key: "auth",
@@ -29,6 +30,7 @@ export const store = configureStore({
     auth: persistedReducer,
     categories: categoriesReducer,
     dictionaryFilters: dictionaryFiltersReducer,
+    ownWords: reducerOwnWord,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -41,12 +41,13 @@ const DashboardSelect = ({
               `flex h-[48px] w-full cursor-pointer items-center rounded-[15px] border px-4 py-2 text-base font-medium transition-all duration-200  `,
               "md:max-w-[164px]",
               isFocused
-                ? `border-primaryGreen shadow-[0_0_0_2px_rgba(133,170,159,0.2)] ${isModal && "border-lightWhite/50"}`
-                : `border-lightSecondGray/10 hover:border-primaryGreen ${isModal && "border-lightWhite hover:border-lightWhite/50"}`,
+                ? `border-primaryGreen shadow-[0_0_0_2px_rgba(133,170,159,0.2)] ${isModal && "border-primaryWhite"}`
+                : `border-lightSecondGray/10 hover:border-primaryGreen ${isModal && "border-lightWhite hover:border-primaryWhite"}`,
             ),
           placeholder: () =>
             `text-primaryBlack ${isModal && "text-primaryWhite"}`,
-          singleValue: () => "text-primaryBlack",
+          singleValue: () =>
+            clsx("text-primaryBlack", isModal && "text-primaryWhite"),
           menu: () =>
             "mt-2 rounded-[15px] border border-lightSecondGray/20 bg-white shadow-[0_4px_10px_rgba(0,0,0,0.1)]",
           option: ({ isFocused, isSelected }) =>

@@ -1,8 +1,23 @@
-import React from "react";
+import { useEffect } from "react";
 import Dashboard from "../components/Dashboard";
 import clsx from "clsx";
+import WordsTable from "../components/WordsTable";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { getAllUserWords } from "../redux/wordsUser/operationsWordsUser";
 
 const Dictionary = () => {
+  const dispatch = useDispatch();
+  const { words } = useDispatch((state) => state.ownWords);
+
+  useEffect(() => {
+    dispatch(getAllUserWords())
+      .unwrap()
+      .then(() => {
+        toast.success("OK");
+      });
+  }, [dispatch]);
+
   return (
     <div
       className={clsx(
@@ -12,6 +27,7 @@ const Dictionary = () => {
       )}
     >
       <Dashboard />
+      <WordsTable data={words} />
     </div>
   );
 };
