@@ -21,6 +21,7 @@ export default {
         lightGray: "#85AABB",
         lightSecondGray: "#121417",
         lightWhite: "#d1d5db",
+        tableBorder: "#dbdbdb",
       },
       width: {
         "card-sm": "max-w-[236px]",

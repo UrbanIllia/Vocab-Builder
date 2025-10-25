@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <header
       className={clsx(
-        "flex w-full flex-row items-center justify-between bg-secondaryWhite px-4 py-4",
+        "flex w-full flex-row items-center justify-between bg-white px-4 py-4",
         "md:px-8 md:py-6",
         "xl:px-[100px]",
       )}
