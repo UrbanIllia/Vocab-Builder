@@ -10,6 +10,7 @@ import {
   selectPerPage,
   selectTotalPages,
 } from "../redux/wordsUser/selectorsWordsUser";
+import Pagination from "../components/Pagination";
 
 const Dictionary = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,11 @@ const Dictionary = () => {
   const page = useSelector(selectPage);
   const perPage = useSelector(selectPerPage);
   const totalPages = useSelector(selectTotalPages);
+
+  const handlePageChange = (newPage) => {
+    if (newPage < 1 || newPage > totalPages) return;
+    dispatch(getAllUserWords({ page: newPage, limit: perPage }));
+  };
 
   useEffect(() => {
     dispatch(getAllUserWords({ page, limit: perPage }))
@@ -36,6 +42,13 @@ const Dictionary = () => {
     >
       <Dashboard />
       <WordsTable data={words} />
+      <div className="mx-auto flex items-center justify-center">
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      </div>
     </div>
   );
 };
