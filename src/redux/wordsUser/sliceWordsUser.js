@@ -1,12 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addUserWordThunk, getAllUserWords } from "./operationsWordsUser";
+import {
+  addUserWordThunk,
+  deleteOneUserWord,
+  getAllUserWords,
+} from "./operationsWordsUser";
 
-// const initialState = {
-//   en: "",
-//   ua: "",
-//   category: "",
-//   isIrregular: false,
-// };
 const initialState = {
   words: [],
   page: 1,
@@ -21,12 +19,6 @@ const slice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
-      // .addCase(addUserWordThunk.fulfilled, (state, action) => {
-      //   state.en = action.payload.en;
-      //   state.ua = action.payload.ua;
-      //   state.category = action.payload.category;
-      //   state.isIrregular = action.payload.isIrregular;
-      // })
       .addCase(getAllUserWords.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -50,9 +42,23 @@ const slice = createSlice({
       })
       .addCase(addUserWordThunk.fulfilled, (state, action) => {
         state.isLoading = false;
+        console.log("addUserWordThunk", action.payload);
         state.words.unshift(action.payload);
       })
       .addCase(addUserWordThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      // //////////////////////////////////////////////////////////////////////////
+      .addCase(deleteOneUserWord.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(deleteOneUserWord.fulfilled, (state, action) => {
+        state.words = state.words.filter((item) => item._id !== action.payload);
+        state.isLoading = false;
+      })
+      .addCase(deleteOneUserWord.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });

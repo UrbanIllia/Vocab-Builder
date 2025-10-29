@@ -79,7 +79,7 @@ const AddWordForm = ({ initialValues, handleSubmitForm, onCancel }) => {
               name="ua"
               placeholder="Працювати"
               className={clsx(
-                "order-2 w-full placeholder:text-base placeholder:font-medium placeholder:leading-oneAndHalf placeholder:text-primaryWhite md:order-1 md:max-w-[354px]",
+                "order-2 w-full placeholder:text-base placeholder:font-medium placeholder:leading-oneAndHalf placeholder:text-primaryWhite focus:placeholder-transparent md:order-1 md:max-w-[354px]",
                 "rounded-[15px] border border-lightWhite bg-transparent px-6 py-3 text-base font-medium leading-oneAndHalf text-primaryWhite outline-none transition hover:border-primaryWhite",
                 errors.ua && touched.ua && "border border-red-700",
               )}
@@ -110,7 +110,7 @@ const AddWordForm = ({ initialValues, handleSubmitForm, onCancel }) => {
               name="en"
               placeholder="Work"
               className={clsx(
-                "order-2 w-full placeholder:text-base placeholder:font-medium placeholder:leading-oneAndHalf placeholder:text-primaryWhite md:order-1 md:max-w-[354px]",
+                "order-2 w-full placeholder:text-base placeholder:font-medium placeholder:leading-oneAndHalf placeholder:text-primaryWhite focus:placeholder-transparent md:order-1 md:max-w-[354px]",
                 "rounded-[15px] border border-lightWhite bg-transparent px-6 py-3 text-base font-medium leading-oneAndHalf text-primaryWhite outline-none transition hover:border-primaryWhite",
                 errors.en && touched.en && "border border-red-700",
               )}

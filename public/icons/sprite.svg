@@ -51,4 +51,10 @@
 <path fill="#ffda44" style="fill: var(--color4, #ffda44)" d="M16 32c8.837 0 16-7.163 16-16s-7.163-16-16-16-16 7.163-16 16 7.163 16 16 16z"></path>
 <path fill="#338af3" style="fill: var(--color5, #338af3)" d="M0 16c0-8.837 7.163-16 16-16s16 7.163 16 16z"></path>
 </symbol>
+<symbol id="icon-edit" viewBox="0 0 32 32">
+<path fill="none" stroke="#85aa9f" style="stroke: var(--color1, #85aa9f)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6" d="M22.666 4c0.683-0.683 1.625-1.105 2.667-1.105 2.083 0 3.772 1.689 3.772 3.772 0 1.042-0.422 1.984-1.105 2.667v0l-18 18-7.334 2 2-7.334z"></path>
+</symbol>
+<symbol id="icon-trash" viewBox="0 0 32 32">
+<path fill="none" stroke="#85aa9f" style="stroke: var(--color1, #85aa9f)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6" d="M4 8h24M25.334 8v18.666c0 0.001 0 0.001 0 0.002 0 1.472-1.194 2.666-2.666 2.666-0.001 0-0.001 0-0.002 0h-13.332c-0.001 0-0.001 0-0.002 0-1.472 0-2.666-1.194-2.666-2.666 0-0.001 0-0.001 0-0.002v0-18.666M10.666 8v-2.666c0-0.001 0-0.001 0-0.002 0-1.472 1.194-2.666 2.666-2.666 0.001 0 0.001 0 0.002 0h5.332c0.001 0 0.001 0 0.002 0 1.472 0 2.666 1.194 2.666 2.666 0 0.001 0 0.001 0 0.002v-0 2.666M13.334 14.666v8M18.666 14.666v8"></path>
+</symbol>
 </svg>

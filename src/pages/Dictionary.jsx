@@ -5,19 +5,26 @@ import WordsTable from "../components/WordsTable";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { getAllUserWords } from "../redux/wordsUser/operationsWordsUser";
+import {
+  selectPage,
+  selectPerPage,
+  selectTotalPages,
+} from "../redux/wordsUser/selectorsWordsUser";
 
 const Dictionary = () => {
   const dispatch = useDispatch();
   const words = useSelector((state) => state.ownWords.words);
-  console.log(words);
+  const page = useSelector(selectPage);
+  const perPage = useSelector(selectPerPage);
+  const totalPages = useSelector(selectTotalPages);
 
   useEffect(() => {
-    dispatch(getAllUserWords())
+    dispatch(getAllUserWords({ page, limit: perPage }))
       .unwrap()
       .then(() => {
         toast.success("OK");
       });
-  }, [dispatch]);
+  }, [dispatch, page, perPage]);
 
   return (
     <div

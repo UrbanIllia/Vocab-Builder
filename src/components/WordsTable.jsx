@@ -9,11 +9,14 @@ import RowActions from "./RowActions";
 
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { useSelector } from "react-redux";
+import { isLoading } from "../redux/wordsUser/selectorsWordsUser";
+import Loader from "./Loader";
 
 const WordsTable = ({ data = [] }) => {
   // ✅ 1. Определяем колонки
   const columnHelper = createColumnHelper();
-
+  const isLoad = useSelector(isLoading);
   const columns = useMemo(
     () => [
       columnHelper.accessor("en", {
@@ -69,8 +72,8 @@ const WordsTable = ({ data = [] }) => {
                   text=""
                   strokeWidth="16"
                   styles={buildStyles({
-                    pathColor: "#2bd627", // цвет прогресса
-                    trailColor: "#d4f8d3", // фон
+                    pathColor: "#2bd627",
+                    trailColor: "#d4f8d3",
                   })}
                 />
               </div>
@@ -81,20 +84,28 @@ const WordsTable = ({ data = [] }) => {
       columnHelper.display({
         id: "actions", // обязательно уникальный ID
         header: "", // без заголовка
-        cell: ({ row }) => <RowActions row={row} />,
+        cell: (cellProps) => {
+          const row = cellProps.row; // вот он!
+          return <RowActions row={row} />;
+        },
       }),
     ],
     [columnHelper],
   );
 
-  // ✅ 2. Создаем таблицу
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
 
-  // ✅ 3. Отображаем
+  if (isLoad) {
+    return (
+      <div className="flex h-[200px] items-center justify-center">
+        <Loader />
+      </div>
+    );
+  }
   return (
     <div className="bg-white p-0 md:rounded-[15px] md:p-[18px]">
       <div className="overflow-x-auto rounded-t-[8px] pb-20">
