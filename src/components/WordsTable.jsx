@@ -32,7 +32,7 @@ const WordsTable = ({ data = [], variant }) => {
               aria-hidden="true"
               className="h-5 w-5 text-primaryGreen md:h-7 md:w-7 xl:h-8 xl:w-8"
             >
-              <use href="/public/icons/sprite.svg#icon-united-kingdom" />
+              <use href="/icons/sprite.svg#icon-united-kingdom" />
             </svg>
           </div>
         ),
@@ -48,7 +48,7 @@ const WordsTable = ({ data = [], variant }) => {
               aria-hidden="true"
               className="h-5 w-5 text-primaryGreen md:h-7 md:w-7 xl:h-8 xl:w-8"
             >
-              <use href="/public/icons/sprite.svg#icon-ukraine" />
+              <use href="/icons/sprite.svg#icon-ukraine" />
             </svg>
           </div>
         ),
