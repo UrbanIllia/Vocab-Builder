@@ -45,7 +45,7 @@ const Pagination = ({ page, totalPages, onPageChange }) => {
         className="flex h-8 w-8 items-center justify-center rounded-lg border border-lightSecondGray/10 transition hover:bg-primaryGreen/20 disabled:opacity-40 disabled:hover:bg-transparent"
       >
         <svg aria-hidden="true" className="h-4 w-4 stroke-black">
-          <use href="/public/icons/sprite.svg#icon-two-arr" />
+          <use href="/icons/sprite.svg#icon-two-arr" />
         </svg>
       </button>
 
@@ -57,7 +57,7 @@ const Pagination = ({ page, totalPages, onPageChange }) => {
         className="flex h-8 w-8 items-center justify-center rounded-lg border border-lightSecondGray/10 transition hover:bg-primaryGreen/20 disabled:opacity-40 disabled:hover:bg-transparent"
       >
         <svg aria-hidden="true" className="h-4 w-4 stroke-black">
-          <use href="/public/icons/sprite.svg#icon-one-arr" />
+          <use href="/icons/sprite.svg#icon-one-arr" />
         </svg>
       </button>
 
@@ -94,7 +94,7 @@ const Pagination = ({ page, totalPages, onPageChange }) => {
         className="flex h-8 w-8 items-center justify-center rounded-lg border border-lightSecondGray/10 transition hover:bg-primaryGreen/20 disabled:opacity-40 disabled:hover:bg-transparent"
       >
         <svg aria-hidden="true" className="h-4 w-4 rotate-180 stroke-black">
-          <use href="/public/icons/sprite.svg#icon-one-arr" />
+          <use href="/icons/sprite.svg#icon-one-arr" />
         </svg>
       </button>
 
@@ -106,7 +106,7 @@ const Pagination = ({ page, totalPages, onPageChange }) => {
         className="flex h-8 w-8 items-center justify-center rounded-lg border border-lightSecondGray/10 transition hover:bg-primaryGreen/20 disabled:opacity-40 disabled:hover:bg-transparent"
       >
         <svg aria-hidden="true" className="h-4 w-4 rotate-180 stroke-black">
-          <use href="/public/icons/sprite.svg#icon-two-arr" />
+          <use href="/icons/sprite.svg#icon-two-arr" />
         </svg>
       </button>
     </div>

@@ -36,7 +36,7 @@ const UserLogOut = ({ variant }) => {
             isHeader ? "stroke-primaryBlack" : "stroke-primaryWhite",
           )}
         >
-          <use href="/public/icons/sprite.svg#icon-arrow-right"></use>
+          <use href="/icons/sprite.svg#icon-arrow-right"></use>
         </svg>
       </button>
     </div>

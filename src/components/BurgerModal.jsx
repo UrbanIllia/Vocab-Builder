@@ -41,7 +41,7 @@ const BurgerModal = ({ handleCloseModal }) => {
                   "md:h-[40px] md:w-[40px]",
                 )}
               >
-                <use href="/public/icons/sprite.svg#icon-x"></use>
+                <use href="/icons/sprite.svg#icon-x"></use>
               </svg>
             </button>
           </div>

@@ -52,7 +52,7 @@ const RowActions = ({ row }) => {
             className="flex flex-row gap-2 rounded-md px-2 text-sm font-medium text-lightSecondGray transition hover:scale-110 hover:bg-green-100 md:text-base md:leading-oneAndHalf"
           >
             <svg aria-hidden="true" focusable="false" className="h-4 w-4">
-              <use href="/public/icons/sprite.svg#icon-edit"></use>
+              <use href="/icons/sprite.svg#icon-edit"></use>
             </svg>
             <span>Edit</span>
           </button>
@@ -65,7 +65,7 @@ const RowActions = ({ row }) => {
             className="flex flex-row gap-2 rounded-md px-2 text-sm font-medium text-lightSecondGray transition hover:scale-110 hover:bg-red-100 md:text-base md:leading-oneAndHalf"
           >
             <svg aria-hidden="true" focusable="false" className="h-4 w-4">
-              <use href="/public/icons/sprite.svg#icon-trash"></use>
+              <use href="/icons/sprite.svg#icon-trash"></use>
             </svg>
             <span>Delete</span>
           </button>

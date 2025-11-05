@@ -62,7 +62,7 @@ const AddWordForm = ({ initialValues, handleSubmitForm, onCancel }) => {
           <label className="relative mb-5 mt-[58px] flex flex-col gap-[13px] md:mt-[70px] md:flex-row">
             <div className="order-1 flex flex-row items-center gap-2 md:order-2">
               <svg aria-hidden="true" focusable="false" className="h-7 w-7">
-                <use href="/public/icons/sprite.svg#icon-ukraine" />
+                <use href="/icons/sprite.svg#icon-ukraine" />
               </svg>
               <span
                 className={clsx(
@@ -94,7 +94,7 @@ const AddWordForm = ({ initialValues, handleSubmitForm, onCancel }) => {
           <label className="relative mb-8 flex flex-col gap-[13px] md:flex-row">
             <div className="order-1 flex flex-row items-center gap-2 md:order-2">
               <svg aria-hidden="true" focusable="false" className="h-7 w-7">
-                <use href="/public/icons/sprite.svg#icon-united-kingdom" />
+                <use href="/icons/sprite.svg#icon-united-kingdom" />
               </svg>
               <span
                 className={clsx(

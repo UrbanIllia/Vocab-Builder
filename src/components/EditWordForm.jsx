@@ -34,7 +34,7 @@ const EditWordForm = ({ toggleModalEdit, row, onPatch }) => {
                     focusable="false"
                     className="h-7 w-7 md:h-8 md:w-8"
                   >
-                    <use href="/public/icons/sprite.svg#icon-ukraine" />
+                    <use href="/icons/sprite.svg#icon-ukraine" />
                   </svg>
                   <span
                     className={clsx(
@@ -68,7 +68,7 @@ const EditWordForm = ({ toggleModalEdit, row, onPatch }) => {
                     focusable="false"
                     className="h-7 w-7 md:h-8 md:w-8"
                   >
-                    <use href="/public/icons/sprite.svg#icon-united-kingdom" />
+                    <use href="/icons/sprite.svg#icon-united-kingdom" />
                   </svg>
                   <span
                     className={clsx(

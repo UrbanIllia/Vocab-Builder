@@ -30,7 +30,7 @@ const WellDoneModal = ({ isClose }) => {
             focusable="false"
             className="h-6 w-6 md:h-8 md:w-8"
           >
-            <use href="/public/icons/sprite.svg#icon-x-close" />
+            <use href="/icons/sprite.svg#icon-x-close" />
           </svg>
         </button>
         <div className="flex flex-row items-end">

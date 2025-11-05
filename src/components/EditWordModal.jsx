@@ -28,7 +28,7 @@ const EditWordModal = ({ toggleModalEdit, row }) => {
             className="h-6 w-6 md:h-8 md:w-8"
             onClick={toggleModalEdit}
           >
-            <use href="/public/icons/sprite.svg#icon-x-close" />
+            <use href="/icons/sprite.svg#icon-x-close" />
           </svg>
         </button>
         <EditWordForm

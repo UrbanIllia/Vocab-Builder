@@ -32,7 +32,7 @@ const UserName = ({ variant }) => {
           aria-hidden="true"
           focusable="false"
         >
-          <use href={`/public/icons/sprite.svg#${iconId}`} />
+          <use href={`/icons/sprite.svg#${iconId}`} />
         </svg>
       </div>
     </div>

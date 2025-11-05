@@ -29,7 +29,7 @@ const Home = () => {
             aria-hidden="true"
             focusable="false"
           >
-            <use href="/public/icons/sprite.svg#icon-Craftwork-two" />
+            <use href="/icons/sprite.svg#icon-Craftwork-two" />
           </svg>
           <p
             className={clsx(

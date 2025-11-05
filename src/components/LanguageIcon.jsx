@@ -9,7 +9,7 @@ const LanguageIcon = ({ variant }) => {
           focusable="false"
           className="h-7 w-7 md:h-8 md:w-8"
         >
-          <use href="/public/icons/sprite.svg#icon-united-kingdom" />
+          <use href="/icons/sprite.svg#icon-united-kingdom" />
         </svg>
       ) : (
         <svg
@@ -17,7 +17,7 @@ const LanguageIcon = ({ variant }) => {
           focusable="false"
           className="h-7 w-7 md:h-8 md:w-8"
         >
-          <use href="/public/icons/sprite.svg#icon-ukraine" />
+          <use href="/icons/sprite.svg#icon-ukraine" />
         </svg>
       )}
 

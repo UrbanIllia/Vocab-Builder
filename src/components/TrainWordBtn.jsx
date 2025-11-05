@@ -9,7 +9,7 @@ const TrainWordBtn = () => {
       >
         Train oneself
         <svg aria-hidden="true" focusable="false" className="h-5 w-5">
-          <use href="/public/icons/sprite.svg#icon-arrright" />
+          <use href="/icons/sprite.svg#icon-arrright" />
         </svg>
       </Link>
     </div>

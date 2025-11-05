@@ -79,7 +79,7 @@ const Dashboard = ({ variant }) => {
                   }}
                 />
                 <svg className="absolute right-[20px] top-1/2 h-[20px] w-[20px] -translate-y-1/2 fill-none stroke-lightSecondGray">
-                  <use href="/public/icons/sprite.svg#icon-search" />
+                  <use href="/icons/sprite.svg#icon-search" />
                 </svg>
               </label>
 

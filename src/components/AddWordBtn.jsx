@@ -7,7 +7,7 @@ const AddWordBtn = ({ handleOpenModal }) => {
       >
         Add word
         <svg aria-hidden="true" focusable="false" className="h-5 w-5">
-          <use href="/public/icons/sprite.svg#icon-plus" />
+          <use href="/icons/sprite.svg#icon-plus" />
         </svg>
       </button>
     </div>
