@@ -30,16 +30,25 @@ export const addUserWordThunk = createAsyncThunk(
 
 export const getAllUserWords = createAsyncThunk(
   "getAllUserWords",
-  async ({ page = 1, limit = 10 } = {}, thunkApi) => {
+  async (
+    {
+      page = 1,
+      limit = 10,
+      keyword = "",
+      category = "",
+      isIrregular = "",
+    } = {},
+    thunkApi,
+  ) => {
     const state = thunkApi.getState();
     const token = state.auth.token;
     if (!token) return thunkApi.rejectWithValue("No token");
     try {
       setAuthHeader(token);
       const { data } = await axiosApi.get("/words/own", {
-        params: { page, limit },
+        params: { page, limit, keyword, category, isIrregular },
       });
-      console.log("DATA:", data);
+      // console.log("DATA:", data);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -81,6 +90,21 @@ export const patchByIdUserWordThunk = createAsyncThunk(
       return thunkApi.rejectWithValue(
         error.response?.data?.message || error.message,
       );
+    }
+  },
+);
+
+export const addWordFromUsersThunk = createAsyncThunk(
+  "addWordFromUsersThunk",
+  async (id, thunkApi) => {
+    const state = thunkApi.getState();
+    const token = state.auth.token;
+    if (!token) return thunkApi.rejectWithValue("No token");
+    try {
+      const { data } = await axiosApi.post(`/words/add/${id}`);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
     }
   },
 );

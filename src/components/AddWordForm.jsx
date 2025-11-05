@@ -37,7 +37,7 @@ const AddWordForm = ({ initialValues, handleSubmitForm, onCancel }) => {
             <ErrorMessage
               name="category"
               component="div"
-              className="absolute bottom-1 left-0 z-50 bg-primaryGreen text-xs text-red-700"
+              className="absolute bottom-[-8px] left-0 z-50 bg-primaryGreen text-xs text-red-700"
             />
             {values.category === "verb" && (
               <div className="absolute bottom-[-48px] left-0 flex flex-col items-start gap-2">

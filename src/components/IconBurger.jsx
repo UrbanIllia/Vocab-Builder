@@ -1,11 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 
-const IconBurger = ({ setIsOpen }) => {
-  const handleOpenModal = () => {
-    setIsOpen(true);
-  };
-
+const IconBurger = ({ handleOpenModal }) => {
   return (
     <button
       type="button"

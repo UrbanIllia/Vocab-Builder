@@ -11,26 +11,53 @@ import {
   selectTotalPages,
 } from "../redux/wordsUser/selectorsWordsUser";
 import Pagination from "../components/Pagination";
+import { selectDictionaryFilters } from "../redux/dictionaryFilters/selectorsDIcFilters";
+import { getUserStatisticsThunk } from "../redux/userAnswers/operationsUserAnswers";
 
 const Dictionary = () => {
   const dispatch = useDispatch();
   const words = useSelector((state) => state.ownWords.words);
+  console.log("words", words);
   const page = useSelector(selectPage);
   const perPage = useSelector(selectPerPage);
   const totalPages = useSelector(selectTotalPages);
 
+  const { filter, category, isIrregular } = useSelector(
+    selectDictionaryFilters,
+  );
+
   const handlePageChange = (newPage) => {
     if (newPage < 1 || newPage > totalPages) return;
-    dispatch(getAllUserWords({ page: newPage, limit: perPage }));
+    dispatch(
+      getAllUserWords({
+        page: newPage,
+        limit: perPage,
+        keyword: filter,
+        category,
+        isIrregular,
+      }),
+    );
   };
 
   useEffect(() => {
-    dispatch(getAllUserWords({ page, limit: perPage }))
+    dispatch(
+      getAllUserWords({
+        page,
+        limit: perPage,
+        keyword: filter,
+        category,
+        isIrregular,
+      }),
+    )
       .unwrap()
       .then(() => {
         toast.success("OK");
       });
-  }, [dispatch, page, perPage]);
+  }, [dispatch, page, perPage, filter, category, isIrregular]);
+
+  useEffect(() => {
+    dispatch(getUserStatisticsThunk());
+  }, [dispatch]);
 
   return (
     <div

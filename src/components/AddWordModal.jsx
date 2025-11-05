@@ -13,19 +13,19 @@ const initialValues = {
   isIrregular: false,
 };
 
-const AddWordModal = ({ handleOpenModal }) => {
+const AddWordModal = ({ handleCloseModal }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === "Escape") handleOpenModal();
+      if (e.key === "Escape") handleCloseModal();
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [handleOpenModal]);
+  }, [handleCloseModal]);
 
   const handleBackdropClick = (e) => {
-    if (e.target === e.currentTarget) handleOpenModal();
+    if (e.target === e.currentTarget) handleCloseModal();
   };
 
   const handleSubmitForm = async (values) => {
@@ -35,7 +35,7 @@ const AddWordModal = ({ handleOpenModal }) => {
       await dispatch(addUserWordThunk(values)).unwrap();
 
       toast.success("✅ Word added successfully!");
-      handleOpenModal();
+      handleCloseModal();
     } catch (error) {
       console.error("Error adding word:", error);
       toast.error(`❌ ${error || "Failed to add word"}`);
@@ -55,7 +55,7 @@ const AddWordModal = ({ handleOpenModal }) => {
       >
         <button
           className="absolute right-4 top-4 transition duration-300 hover:rotate-180 hover:scale-125 md:right-5 md:top-5"
-          onClick={handleOpenModal}
+          onClick={handleCloseModal}
         >
           <svg
             aria-hidden="true"
@@ -80,7 +80,7 @@ const AddWordModal = ({ handleOpenModal }) => {
         <AddWordForm
           initialValues={initialValues}
           handleSubmitForm={handleSubmitForm}
-          onCancel={handleOpenModal}
+          onCancel={handleCloseModal}
         />
       </div>
     </div>

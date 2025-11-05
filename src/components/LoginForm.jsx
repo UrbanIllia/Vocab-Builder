@@ -11,7 +11,7 @@ const initialValues = {
 };
 
 const inputStyle =
-  "w-full rounded-[15px] border outline-none hover:border transition hover:border-primaryGreen border-lightSecondGray/10 px-[18px] py-4 text-base font-normal leading-oneAndHalf text-primaryBlack placeholder:text-base placeholder:font-normal placeholder:text-primaryBlack";
+  "w-full rounded-[15px] focus:placeholder-transparent border outline-none hover:border transition hover:border-primaryGreen border-lightSecondGray/10 px-[18px] py-4 text-base font-normal leading-oneAndHalf text-primaryBlack placeholder:text-base placeholder:font-normal placeholder:text-primaryBlack";
 
 const LoginForm = ({ handleSubmitLogin }) => {
   const [showPassword, setShowPassword] = useState(false);

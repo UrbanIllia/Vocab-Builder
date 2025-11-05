@@ -6,19 +6,22 @@ import {
   createColumnHelper,
 } from "@tanstack/react-table";
 import RowActions from "./RowActions";
-
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useSelector } from "react-redux";
 import { isLoading } from "../redux/wordsUser/selectorsWordsUser";
 import Loader from "./Loader";
+import AddToDictionaryBtn from "./AddToDictionaryBtn";
+import { allIsLoading } from "../redux/allWords/selectorsAllWords";
 
-const WordsTable = ({ data = [] }) => {
-  // ✅ 1. Определяем колонки
+const WordsTable = ({ data = [], variant }) => {
+  const recommend = variant === "recommend";
   const columnHelper = createColumnHelper();
   const isLoad = useSelector(isLoading);
-  const columns = useMemo(
-    () => [
+  const isLoad2 = useSelector(allIsLoading);
+
+  const columns = useMemo(() => {
+    const baseColumns = [
       columnHelper.accessor("en", {
         header: () => (
           <div className="flex items-center justify-between gap-2">
@@ -27,7 +30,6 @@ const WordsTable = ({ data = [] }) => {
             </span>
             <svg
               aria-hidden="true"
-              focusable="false"
               className="h-5 w-5 text-primaryGreen md:h-7 md:w-7 xl:h-8 xl:w-8"
             >
               <use href="/public/icons/sprite.svg#icon-united-kingdom" />
@@ -44,7 +46,6 @@ const WordsTable = ({ data = [] }) => {
             </span>
             <svg
               aria-hidden="true"
-              focusable="false"
               className="h-5 w-5 text-primaryGreen md:h-7 md:w-7 xl:h-8 xl:w-8"
             >
               <use href="/public/icons/sprite.svg#icon-ukraine" />
@@ -57,41 +58,61 @@ const WordsTable = ({ data = [] }) => {
         header: "Category",
         cell: (info) => info.getValue(),
       }),
-      columnHelper.accessor("progress", {
-        header: "Progress",
-        cell: (info) => {
-          const value = info.getValue();
-          return (
-            <div className="flex flex-row items-center justify-center gap-2">
-              <span className="text-base font-medium text-lightSecondGray md:text-lg xl:text-xl">
-                {value}%
-              </span>
-              <div className="h-6 w-6 md:h-[26px] md:w-[26px]">
-                <CircularProgressbar
-                  value={20}
-                  text=""
-                  strokeWidth="16"
-                  styles={buildStyles({
-                    pathColor: "#2bd627",
-                    trailColor: "#d4f8d3",
-                  })}
-                />
+    ];
+
+    if (!recommend) {
+      baseColumns.push(
+        columnHelper.accessor("progress", {
+          header: "Progress",
+          cell: (info) => {
+            const value = info.getValue();
+            return (
+              <div className="flex flex-row items-center justify-center gap-2">
+                <span className="text-base font-medium text-lightSecondGray md:text-lg xl:text-xl">
+                  {value}%
+                </span>
+                <div className="h-6 w-6 md:h-[26px] md:w-[26px]">
+                  <CircularProgressbar
+                    value={value ?? 0}
+                    text=""
+                    strokeWidth={16}
+                    styles={buildStyles({
+                      pathColor: "#2bd627",
+                      trailColor: "#d4f8d3",
+                    })}
+                  />
+                </div>
               </div>
+            );
+          },
+        }),
+      );
+    }
+
+    baseColumns.push(
+      columnHelper.display({
+        id: "actions",
+        header: "",
+        maxSize: recommend ? 200 : 80,
+        minSize: 80,
+        size: recommend ? 150 : 50,
+        cell: (cellProps) => {
+          const row = cellProps.row;
+          return (
+            <div>
+              {recommend ? (
+                <AddToDictionaryBtn row={row} />
+              ) : (
+                <RowActions row={row} />
+              )}
             </div>
           );
         },
       }),
-      columnHelper.display({
-        id: "actions", // обязательно уникальный ID
-        header: "", // без заголовка
-        cell: (cellProps) => {
-          const row = cellProps.row; // вот он!
-          return <RowActions row={row} />;
-        },
-      }),
-    ],
-    [columnHelper],
-  );
+    );
+
+    return baseColumns;
+  }, [columnHelper, recommend]);
 
   const table = useReactTable({
     data,
@@ -99,16 +120,17 @@ const WordsTable = ({ data = [] }) => {
     getCoreRowModel: getCoreRowModel(),
   });
 
-  if (isLoad) {
+  if (isLoad || isLoad2) {
     return (
-      <div className="flex h-[200px] items-center justify-center">
+      <div className="my-10 flex h-[200px] items-center justify-center">
         <Loader />
       </div>
     );
   }
+
   return (
     <div className="bg-white p-0 md:rounded-[15px] md:p-[18px]">
-      <div className="overflow-x-auto rounded-t-[8px] pb-20">
+      <div className="overflow-x-auto rounded-t-[8px]">
         <table className="w-full text-left text-lightSecondGray">
           <thead className="bg-primaryGreen/10 text-base">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -116,6 +138,7 @@ const WordsTable = ({ data = [] }) => {
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
+                    style={{ width: header.getSize() }}
                     className="border-r border-tableBorder px-[20px] py-[22px] font-medium last:border-r-0 md:text-lg xl:text-xl"
                   >
                     {flexRender(
@@ -136,6 +159,7 @@ const WordsTable = ({ data = [] }) => {
                 {row.getVisibleCells().map((cell) => (
                   <td
                     key={cell.id}
+                    style={{ width: cell.column.getSize() }}
                     className="border-r border-tableBorder p-3 px-[14px] py-4 text-sm font-medium text-lightSecondGray last:border-r-0 md:px-[22px] md:py-[22px] md:text-lg xl:text-xl"
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

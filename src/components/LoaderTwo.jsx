@@ -1,7 +1,7 @@
 import { ClipLoader } from "react-spinners";
-const Loader = () => {
+const LoaderTwo = () => {
   return (
-    <div className="my-10 flex items-center justify-center">
+    <div className="my-[80px] flex items-center justify-center">
       <ClipLoader
         // loading={loading}
         // cssOverride={override}
@@ -15,4 +15,4 @@ const Loader = () => {
   );
 };
 
-export default Loader;
+export default LoaderTwo;

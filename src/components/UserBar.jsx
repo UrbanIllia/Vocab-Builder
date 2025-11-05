@@ -1,12 +1,22 @@
 import clsx from "clsx";
-import { useState } from "react";
 import BurgerModal from "./BurgerModal";
 import UserName from "./UserName";
 import UserLogOut from "./UserLogOut";
 import IconBurger from "./IconBurger";
+import { useDispatch, useSelector } from "react-redux";
+import { isOpenBurgerMenuModal } from "../redux/ui/uiSelectors";
+import { closeBurgerMenuOpen, openBurgerMenuOpen } from "../redux/ui/uiSlice";
 
 const UserBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
+  const isOpen = useSelector(isOpenBurgerMenuModal);
+
+  const handleOpenModal = () => {
+    dispatch(openBurgerMenuOpen());
+  };
+  const handleCloseModal = () => {
+    dispatch(closeBurgerMenuOpen());
+  };
 
   return (
     <div
@@ -18,9 +28,9 @@ const UserBar = () => {
     >
       <UserName variant="header" />
       <UserLogOut variant="header" />
-      <IconBurger setIsOpen={setIsOpen} />
+      <IconBurger handleOpenModal={handleOpenModal} />
 
-      {isOpen && <BurgerModal setIsOpen={setIsOpen} />}
+      {isOpen && <BurgerModal handleCloseModal={handleCloseModal} />}
     </div>
   );
 };

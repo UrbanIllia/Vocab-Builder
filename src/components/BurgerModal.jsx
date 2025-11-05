@@ -3,13 +3,14 @@ import UserName from "./UserName";
 import UserNav from "./UserNav";
 import UserLogOut from "./UserLogOut";
 import ModalImage from "./ModalImage";
+
 // import UserLogOut from "./UserLogOut";
 
-const BurgerModal = ({ setIsOpen }) => {
+const BurgerModal = ({ handleCloseModal }) => {
   return (
     <div
       className="fixed inset-0 z-50 flex justify-center bg-black bg-opacity-50"
-      onClick={() => setIsOpen(false)}
+      onClick={handleCloseModal}
     >
       <div
         className={clsx(
@@ -29,7 +30,7 @@ const BurgerModal = ({ setIsOpen }) => {
             <UserName variant="modal" />
             <button
               type="button"
-              onClick={() => setIsOpen(false)}
+              onClick={handleCloseModal}
               className="absolute right-4 top-4"
             >
               <svg
@@ -45,7 +46,7 @@ const BurgerModal = ({ setIsOpen }) => {
             </button>
           </div>
           <div>
-            <UserNav variant="modal" />
+            <UserNav variant="modal" handleCloseModal={handleCloseModal} />
             <UserLogOut variant="modal" />
           </div>
           <div className="mx-auto self-end">

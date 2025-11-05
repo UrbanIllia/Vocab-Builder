@@ -12,7 +12,7 @@ const initialValues = {
 };
 
 const inputStyle =
-  "w-full rounded-[15px] border outline-none hover:border transition hover:border-primaryGreen border-lightSecondGray/10 px-[18px] py-4 text-base font-normal leading-oneAndHalf text-primaryBlack placeholder:text-base placeholder:font-normal placeholder:text-primaryBlack";
+  "w-full rounded-[15px] border outline-none focus:placeholder-transparent hover:border transition hover:border-primaryGreen border-lightSecondGray/10 px-[18px] py-4 text-base font-normal leading-oneAndHalf text-primaryBlack placeholder:text-base placeholder:font-normal placeholder:text-primaryBlack";
 
 const RegisterForm = ({ handleSubmit }) => {
   const [showPassword, setShowPassword] = useState(false);

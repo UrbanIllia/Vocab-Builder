@@ -15,8 +15,13 @@ const activeNavModal = ({ isActive }) => {
       : "hover:translate-x-6",
   );
 };
-const UserNav = ({ variant }) => {
+const UserNav = ({ variant, handleCloseModal }) => {
   const isHeader = variant === "header";
+
+  const handleCloseModalMenu = () => {
+    handleCloseModal();
+  };
+
   return (
     <nav
       className={clsx(
@@ -26,17 +31,23 @@ const UserNav = ({ variant }) => {
     >
       <NavLink
         to="/dictionary"
+        onClick={handleCloseModalMenu}
         className={isHeader ? activeNav : activeNavModal}
       >
         Dictionary
       </NavLink>
       <NavLink
         to="/recommend"
+        onClick={handleCloseModalMenu}
         className={isHeader ? activeNav : activeNavModal}
       >
         Recommend
       </NavLink>
-      <NavLink to="/training" className={isHeader ? activeNav : activeNavModal}>
+      <NavLink
+        to="/training"
+        className={isHeader ? activeNav : activeNavModal}
+        onClick={handleCloseModalMenu}
+      >
         Training
       </NavLink>
     </nav>

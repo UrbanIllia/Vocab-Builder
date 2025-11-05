@@ -1,5 +1,3 @@
-// import clsx from "clsx";
-
 import clsx from "clsx";
 
 const Pagination = ({ page, totalPages, onPageChange }) => {
@@ -11,42 +9,40 @@ const Pagination = ({ page, totalPages, onPageChange }) => {
   // === 🧠 Генерация страниц ===
   const generatePages = () => {
     const pages = [];
+    const safeTotal = Number(totalPages) || 0;
+    const safePage = Number(page) || 1;
 
-    // Мало страниц — просто все выводим
-    if (totalPages <= 7) {
-      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    if (safeTotal <= 7) {
+      for (let i = 1; i <= safeTotal; i++) pages.push(i);
       return pages;
     }
 
-    // Если мы близко к началу
-    if (page <= 4) return [1, 2, 3, 4, 5, "...", totalPages];
+    if (safePage <= 4) return [1, 2, 3, 4, 5, "...", safeTotal];
 
-    // Если мы близко к концу
-    if (page >= totalPages - 3)
+    if (safePage >= safeTotal - 3)
       return [
         1,
         "...",
-        totalPages - 4,
-        totalPages - 3,
-        totalPages - 2,
-        totalPages - 1,
-        totalPages,
+        safeTotal - 4,
+        safeTotal - 3,
+        safeTotal - 2,
+        safeTotal - 1,
+        safeTotal,
       ];
 
-    // Иначе — в середине
-    return [1, "...", page - 1, page, page + 1, "...", totalPages];
+    return [1, "...", safePage - 1, safePage, safePage + 1, "...", safeTotal];
   };
 
   const pages = generatePages();
 
   return (
-    <div className="flex flex-row gap-[10px]">
+    <div className="my-[20px] flex flex-row gap-[10px]">
       {/* Первая страница ...........................................................................*/}
       <button
         type="button"
         onClick={handleFirstPage}
         disabled={page === 1}
-        className="flex h-8 w-8 items-center justify-center rounded-lg border border-lightSecondGray/10 disabled:opacity-40"
+        className="flex h-8 w-8 items-center justify-center rounded-lg border border-lightSecondGray/10 transition hover:bg-primaryGreen/20 disabled:opacity-40 disabled:hover:bg-transparent"
       >
         <svg aria-hidden="true" className="h-4 w-4 stroke-black">
           <use href="/public/icons/sprite.svg#icon-two-arr" />
@@ -58,7 +54,7 @@ const Pagination = ({ page, totalPages, onPageChange }) => {
         type="button"
         onClick={handlePrev}
         disabled={page === 1}
-        className="flex h-8 w-8 items-center justify-center rounded-lg border border-lightSecondGray/10 disabled:opacity-40"
+        className="flex h-8 w-8 items-center justify-center rounded-lg border border-lightSecondGray/10 transition hover:bg-primaryGreen/20 disabled:opacity-40 disabled:hover:bg-transparent"
       >
         <svg aria-hidden="true" className="h-4 w-4 stroke-black">
           <use href="/public/icons/sprite.svg#icon-one-arr" />
@@ -95,7 +91,7 @@ const Pagination = ({ page, totalPages, onPageChange }) => {
         type="button"
         onClick={handleNext}
         disabled={page === totalPages}
-        className="flex h-8 w-8 items-center justify-center rounded-lg border border-lightSecondGray/10 disabled:opacity-40"
+        className="flex h-8 w-8 items-center justify-center rounded-lg border border-lightSecondGray/10 transition hover:bg-primaryGreen/20 disabled:opacity-40 disabled:hover:bg-transparent"
       >
         <svg aria-hidden="true" className="h-4 w-4 rotate-180 stroke-black">
           <use href="/public/icons/sprite.svg#icon-one-arr" />
@@ -107,7 +103,7 @@ const Pagination = ({ page, totalPages, onPageChange }) => {
         type="button"
         onClick={handleLastPage}
         disabled={page === totalPages}
-        className="flex h-8 w-8 items-center justify-center rounded-lg border border-lightSecondGray/10 disabled:opacity-40"
+        className="flex h-8 w-8 items-center justify-center rounded-lg border border-lightSecondGray/10 transition hover:bg-primaryGreen/20 disabled:opacity-40 disabled:hover:bg-transparent"
       >
         <svg aria-hidden="true" className="h-4 w-4 rotate-180 stroke-black">
           <use href="/public/icons/sprite.svg#icon-two-arr" />

@@ -1,6 +1,10 @@
 import clsx from "clsx";
+import { useSelector } from "react-redux";
+import { selectUserStatistics } from "../redux/userAnswers/selectorsUserAnswers";
 
 const Statistics = () => {
+  const statistics = useSelector(selectUserStatistics);
+
   return (
     <div className="flex flex-row items-center gap-2">
       <p
@@ -17,7 +21,7 @@ const Statistics = () => {
           "md:leading-oneAndHalf",
         )}
       >
-        20
+        {statistics}
       </p>
     </div>
   );

@@ -40,7 +40,7 @@ const RowActions = ({ row }) => {
       {open && (
         <div
           className={clsx(
-            "absolute right-0 top-[calc(100%+4px)] z-50",
+            "absolute right-0 top-[-28px] z-50",
             "flex flex-col gap-2 rounded-[15px] border bg-white px-6 py-3 shadow-lg",
           )}
         >

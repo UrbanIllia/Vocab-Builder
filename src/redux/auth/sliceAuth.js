@@ -16,6 +16,7 @@ const initialState = {
   token: "",
   isLoading: false,
   error: null,
+  isCheckingAuth: false,
 };
 
 const authSlice = createSlice({
@@ -62,6 +63,7 @@ const authSlice = createSlice({
       .addCase(getCurrentUserThunk.pending, (state) => {
         state.isLoading = true;
         state.error = null;
+        state.isCheckingAuth = true;
       })
       .addCase(getCurrentUserThunk.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -70,10 +72,12 @@ const authSlice = createSlice({
         state.user.email = action.payload.email;
         state.user.userId = action.payload._id;
         state.token = action.payload.token || state.token;
+        state.isCheckingAuth = false;
       })
       .addCase(getCurrentUserThunk.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload || "Failed to fetch user";
+        state.isCheckingAuth = false;
         // ⚠️ если токен невалиден — можно сделать авто-логаут:
         // state.isLoggedIn = false;
         // state.token = "";

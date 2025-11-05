@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { Field, Form, Formik } from "formik";
 import debounce from "lodash.debounce";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import DashboardSelect from "./DashboardSelect";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategoriesThunk } from "../redux/category/operationsCat";
@@ -11,17 +11,24 @@ import Statistics from "./Statistics";
 import AddWordBtn from "./AddWordBtn";
 import TrainWordBtn from "./TrainWordBtn";
 import AddWordModal from "./AddWordModal";
+import { addRecommendFilters } from "../redux/recommendFilters/sliceRecFilters";
+import { isOpenAddWordModal } from "../redux/ui/uiSelectors";
+import { closeAddWordModal, openAddWordModal } from "../redux/ui/uiSlice";
 
-const Dashboard = () => {
+const Dashboard = ({ variant }) => {
+  const recommend = variant === "recommend";
+
   const dispatch = useDispatch();
   const options = useSelector((state) => state.categories.categories);
   const { dictionaryFilters } = useSelector((state) => state.dictionaryFilters);
-  // console.log("dictionaryFilters", dictionaryFilters);
-
-  const [isOpen, setIsOpen] = useState(false);
+  const { recommendFilters } = useSelector((state) => state.recommendFilters);
+  const isOpen = useSelector(isOpenAddWordModal);
 
   const handleOpenModal = () => {
-    setIsOpen((prev) => !prev);
+    dispatch(openAddWordModal());
+  };
+  const handleCloseModal = () => {
+    dispatch(closeAddWordModal());
   };
 
   useEffect(() => {
@@ -31,15 +38,22 @@ const Dashboard = () => {
   const handleLiveChange = useMemo(
     () =>
       debounce((values) => {
-        dispatch(addDictionaryFilters(values));
+        dispatch(
+          recommend
+            ? addRecommendFilters(values)
+            : addDictionaryFilters(values),
+        );
       }, 300),
-    [dispatch],
+    [dispatch, recommend],
   );
 
   return (
     <div className="flex flex-col items-start justify-center md:justify-between xl:flex-row xl:items-center">
       <div className="mb-[40px] flex w-full flex-col items-start gap-2 md:mb-[28px] md:w-[446px] md:flex-row md:items-center md:gap-[8px]">
-        <Formik initialValues={dictionaryFilters} onSubmit={() => {}}>
+        <Formik
+          initialValues={recommend ? recommendFilters : dictionaryFilters}
+          onSubmit={() => {}}
+        >
           {({ values, handleChange, setFieldValue }) => (
             <Form
               className={clsx(
@@ -107,11 +121,11 @@ const Dashboard = () => {
       <div className="flex flex-col gap-4 md:mt-4 md:flex-row md:items-center xl:mt-0">
         <Statistics />
         <div className="flex flex-row items-center gap-4">
-          <AddWordBtn handleOpenModal={handleOpenModal} />
+          {!recommend && <AddWordBtn handleOpenModal={handleOpenModal} />}
           <TrainWordBtn />
         </div>
       </div>
-      {isOpen && <AddWordModal handleOpenModal={handleOpenModal} />}
+      {isOpen && <AddWordModal handleCloseModal={handleCloseModal} />}
     </div>
   );
 };
