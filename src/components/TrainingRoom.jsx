@@ -124,7 +124,7 @@ const TrainingRoom = ({ tasks }) => {
                 focusable="false"
                 className={clsx("h-4 w-4 fill-none stroke-lightSecondGray/50")}
               >
-                <use href="/public/icons/sprite.svg#icon-arrow-right"></use>
+                <use href="/icons/sprite.svg#icon-arrow-right"></use>
               </svg>
             </button>
           )}
