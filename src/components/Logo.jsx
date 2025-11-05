@@ -10,7 +10,7 @@ const Logo = () => {
         aria-hidden="true"
         focusable="false"
       >
-        <use href="/public/icons/sprite.svg#icon-Craftwork" />
+        <use href="/icons/sprite.svg#icon-Craftwork" />
       </svg>
       <p
         className={clsx(
