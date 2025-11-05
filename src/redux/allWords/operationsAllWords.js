@@ -18,7 +18,13 @@ export const getAllWordsThunk = createAsyncThunk(
     if (!token) return thunkApi.rejectWithValue("No token");
     try {
       const { data } = await axiosApi.get("/words/all", {
-        params: { page, limit, keyword, category, isIrregular },
+        params: {
+          page,
+          limit,
+          keyword,
+          category,
+          isIrregular: isIrregular || undefined,
+        },
       });
       return data;
     } catch (error) {
